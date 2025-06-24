@@ -65,6 +65,7 @@ public class Perceptron
             boolean aprendeu;
             double soma;
             int saida_gerada;
+
             while (true)
             {
                 aprendeu = true;
@@ -101,18 +102,25 @@ public class Perceptron
             }
         }
 
-        // Teste para uma nova amostra (double[])
+        //testes para "novas" amostras
         public void testar(double[] amostra)
         {
+            //Inserir o valor do limiar na posição "0" para cada amostra da lista "amostras"
             double[] amostraComLimiar = new double[numeroAtributos];
             amostraComLimiar[0] = this.limiar;
             for (int i = 0; i < amostra.length; i++) {
                 amostraComLimiar[i + 1] = amostra[i];
             }
+
+            //Inicializar potencial de ativação
             double soma = 0;
+            //# Para cada atributo...
             for (int i = 0; i < numeroAtributos; i++) {
                 soma += amostraComLimiar[i] * pesos[i];
+
             }
+
+            // Obter a saída da rede considerando g a função funcao_ativacao_signal
             double saida_gerada = this.funcao_ativacao_signal(soma);
 
             if (saida_gerada == 1) {
